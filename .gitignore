@@ -32,4 +32,5 @@ disassembly/
 # End of https://www.toptal.com/developers/gitignore/api/mplabx
 
 # Extras
+.DS_Store
 .generated_files/
