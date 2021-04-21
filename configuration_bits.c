@@ -40,6 +40,3 @@
 #pragma config GWRP = OFF               // General Segment Write Protect (Write to program memory allowed)
 #pragma config GCP = OFF                // General Segment Code Protect (Code protection is disabled)
 #pragma config JTAGEN = OFF             // JTAG Port Enable (Disabled)
-
-#include <xc.h>
-
