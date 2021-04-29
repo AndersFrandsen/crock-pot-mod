@@ -1,6 +1,9 @@
 //#include "configuration_bits.c"
 #include "xc.h"
 #include "ds18b20.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
 
 #define ONE_WIRE_TRIS TRISBbits.TRISB2
 
@@ -22,12 +25,11 @@ void main(void)
     ONE_WIRE_TRIS = 1;
     
     RELAY_TRIS = 0;
-    RELAY_LAT = 0;
 
     while (1)
     {
         unsigned char i;
-        unsigned char scratchpad[9];
+        uint8_t scratchpad[9];
 
         ow_reset_pulse();
         ow_write_byte(SKIP_ROM);
@@ -40,12 +42,20 @@ void main(void)
         ow_reset_pulse();
         ow_write_byte(SKIP_ROM);
         ow_write_byte(READ_SCRATCHPAD);
-
-        RELAY_LAT = 1;
         
         for (i = 0; i < 9; i++)
             scratchpad[i] = ow_read_byte();
         
+        uint16_t t1 = scratchpad[1] << 8;
+        uint16_t t2 = scratchpad[0];
         
+        uint16_t temp = ((scratchpad[1] << 8) | (scratchpad[0])) / 16;
+        
+        if (temp < 56)
+            RELAY_LAT = 0;
+        else if (temp > 58)
+            RELAY_LAT = 1;
+        
+        __delay_ms(30000UL)
     }
 }
