@@ -1,5 +1,5 @@
-//#include "configuration_bits.c"
 #include "xc.h"
+#include "mcc_generated_files/system.h"
 #include "ds18b20.h"
 #include <string.h>
 #include <stdlib.h>
@@ -20,11 +20,17 @@
 
 void main(void)
 {
+    SYSTEM_Initialize();
+    
     //ANSBbits.ANSB3 = 0;
     //ANSBbits.ANSB2 = 0;
     ONE_WIRE_TRIS = 1;
     
     RELAY_TRIS = 0;
+    
+    lcd_setContrast(80);
+    lcd_writeString("   Frandsen's   ", 0);
+    lcd_writeString(" DIY Sous Vide! ", 1);
 
     while (1)
     {
