@@ -20,8 +20,8 @@
 
 void main(void)
 {
-    ANSBbits.ANSB3 = 0;
-    ANSBbits.ANSB2 = 0;
+    //ANSBbits.ANSB3 = 0;
+    //ANSBbits.ANSB2 = 0;
     ONE_WIRE_TRIS = 1;
     
     RELAY_TRIS = 0;
