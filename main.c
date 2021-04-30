@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#define ONE_WIRE_TRIS TRISBbits.TRISB2
-
-#define RELAY_TRIS TRISBbits.TRISB3
 #define RELAY_LAT LATBbits.LATB3
 
 #define READ_ROM 0x33
@@ -21,12 +18,6 @@
 void main(void)
 {
     SYSTEM_Initialize();
-    
-    //ANSBbits.ANSB3 = 0;
-    //ANSBbits.ANSB2 = 0;
-    ONE_WIRE_TRIS = 1;
-    
-    RELAY_TRIS = 0;
     
     lcd_setContrast(80);
     lcd_writeString("   Frandsen's   ", 0);
@@ -51,9 +42,6 @@ void main(void)
         
         for (i = 0; i < 9; i++)
             scratchpad[i] = ow_read_byte();
-        
-        uint16_t t1 = scratchpad[1] << 8;
-        uint16_t t2 = scratchpad[0];
         
         uint16_t temp = ((scratchpad[1] << 8) | (scratchpad[0])) / 16;
         

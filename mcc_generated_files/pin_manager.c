@@ -68,9 +68,9 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the GPIO Direction SFR(s)
      ***************************************************************************/
-    TRISA = 0x0794;
-    TRISB = 0xFDFF;
-    TRISC = 0x03E7;
+    TRISA = 0x0797;
+    TRISB = 0xFDF7;
+    TRISC = 0x03EF;
 
     /****************************************************************************
      * Setting the Weak Pull Up and Weak Pull Down SFR(s)
@@ -92,8 +92,8 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the Analog/Digital Configuration SFR(s)
      ***************************************************************************/
-    ANSA = 0x0004;
-    ANSB = 0xF00C;
+    ANSA = 0x0007;
+    ANSB = 0xF000;
     ANSC = 0x0007;
     
     /****************************************************************************
@@ -101,9 +101,9 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
+    RPOR4bits.RP9R = 0x0007;    //RB9->SPI1:SDO1
     RPOR10bits.RP20R = 0x0008;    //RC4->SPI1:SCK1OUT
     RPINR20bits.SDI1R = 0x0008;    //RB8->SPI1:SDI1
-    RPOR4bits.RP9R = 0x0007;    //RB9->SPI1:SDO1
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
 }
