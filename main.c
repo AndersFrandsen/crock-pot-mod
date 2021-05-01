@@ -19,6 +19,13 @@ void main(void)
 {
     SYSTEM_Initialize();
     
+    ANSBbits.ANSB3 = 0;
+    ANSBbits.ANSB2 = 0;
+    
+    uint8_t cycles[16] = "Cycles: ";
+    uint8_t count = 0;
+    uint8_t temperature[16] = "Temp: ";
+
     lcd_setContrast(80);
     lcd_writeString("   Frandsen's   ", 0);
     lcd_writeString(" DIY Sous Vide! ", 1);
@@ -45,10 +52,16 @@ void main(void)
         
         uint16_t temp = ((scratchpad[1] << 8) | (scratchpad[0])) / 16;
         
-        if (temp < 56)
+        if (temp < 53 && RELAY_LAT == 1) {
             RELAY_LAT = 0;
-        else if (temp > 58)
+            count++;
+        }
+        else if (temp > 53 && RELAY_LAT == 0) {
             RELAY_LAT = 1;
+        }
+        
+        //lcd_clearDisplay();
+        //lcd_writeString();
         
         __delay_ms(30000UL)
     }
