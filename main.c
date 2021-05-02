@@ -1,5 +1,6 @@
 #include "xc.h"
 #include "mcc_generated_files/system.h"
+#include "mcc_generated_files/mcc.h"
 #include "ds18b20.h"
 #include <string.h>
 #include <stdlib.h>
@@ -16,7 +17,7 @@
 #define FCY 32000000UL / 16
 #include <libpic30.h>
 
-void main(void)
+int main(void)
 {
     SYSTEM_Initialize();
     
@@ -29,7 +30,6 @@ void main(void)
     celcius[1] = 0xDF;
     
     lcd_setContrast(80);
-    //lcd_writeString("-- °C            ", 0);
     lcd_writeString("On (01)          ", 1);
 
     while (1)
@@ -65,6 +65,10 @@ void main(void)
         utoa(display, temp, 10);
         strcat(display, celcius);
         lcd_writeString(display, 0);
+        
+        ADC1_ChannelSelect(channel_AN10);
+        
+        //uint16_t pot_val = ADC1_ConversionResultGet(POT);
         
         __delay_ms(10000UL);
     }

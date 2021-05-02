@@ -87,7 +87,7 @@ void lcd_setContrast(uint8_t contrast){
 void lcd_setup(){
     LATCbits.LATC3 = 1; /* set LCDMini_nCS output high */
     LATAbits.LATA0 = 1; /* set LCDMini_nCS2 output high */
-    LATAbits.LATA1 = 1; /* set LCDMini_nRESET output high */
+    LATAbits.LATA1 = 1; /* set LCDMini_nReset output high */
     expander_setup();
     expander_setOutput(0);
     DELAY_milliseconds(40);
