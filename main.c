@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #define RELAY_LAT LATBbits.LATB3
 
@@ -21,14 +22,15 @@ void main(void)
     
     ANSBbits.ANSB3 = 0;
     ANSBbits.ANSB2 = 0;
+    TRISBbits.TRISB3 = 0;
     
-    uint8_t cycles[16] = "Cycles: ";
     uint8_t count = 0;
-    uint8_t temperature[16] = "Temp: ";
-
+    char celcius[16] = "  C";
+    celcius[1] = 0xDF;
+    
     lcd_setContrast(80);
-    lcd_writeString("   Frandsen's   ", 0);
-    lcd_writeString(" DIY Sous Vide! ", 1);
+    //lcd_writeString("-- °C            ", 0);
+    lcd_writeString("On (01)          ", 1);
 
     while (1)
     {
@@ -54,15 +56,16 @@ void main(void)
         
         if (temp < 53 && RELAY_LAT == 1) {
             RELAY_LAT = 0;
-            count++;
         }
-        else if (temp > 53 && RELAY_LAT == 0) {
-            RELAY_LAT = 1;
+        else if (temp > 53 && RELAY_LAT == 0) { 
+           RELAY_LAT = 1;
         }
         
-        //lcd_clearDisplay();
-        //lcd_writeString();
+        char display[16] = "";
+        utoa(display, temp, 10);
+        strcat(display, celcius);
+        lcd_writeString(display, 0);
         
-        __delay_ms(30000UL)
+        __delay_ms(10000UL);
     }
 }

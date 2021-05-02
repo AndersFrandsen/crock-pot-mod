@@ -56,6 +56,298 @@
 */
 /**
   @Summary
+    Sets the GPIO pin, RA0, high using LATA0.
+
+  @Description
+    Sets the GPIO pin, RA0, high using LATA0.
+
+  @Preconditions
+    The RA0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA0 high (1)
+    LCDMini_nCS2_SetHigh();
+    </code>
+
+*/
+#define LCDMini_nCS2_SetHigh()          (_LATA0 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RA0, low using LATA0.
+
+  @Description
+    Sets the GPIO pin, RA0, low using LATA0.
+
+  @Preconditions
+    The RA0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA0 low (0)
+    LCDMini_nCS2_SetLow();
+    </code>
+
+*/
+#define LCDMini_nCS2_SetLow()           (_LATA0 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RA0, using LATA0.
+
+  @Description
+    Toggles the GPIO pin, RA0, using LATA0.
+
+  @Preconditions
+    The RA0 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RA0
+    LCDMini_nCS2_Toggle();
+    </code>
+
+*/
+#define LCDMini_nCS2_Toggle()           (_LATA0 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RA0.
+
+  @Description
+    Reads the value of the GPIO pin, RA0.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RA0
+    postValue = LCDMini_nCS2_GetValue();
+    </code>
+
+*/
+#define LCDMini_nCS2_GetValue()         _RA0
+/**
+  @Summary
+    Configures the GPIO pin, RA0, as an input.
+
+  @Description
+    Configures the GPIO pin, RA0, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA0 as an input
+    LCDMini_nCS2_SetDigitalInput();
+    </code>
+
+*/
+#define LCDMini_nCS2_SetDigitalInput()  (_TRISA0 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RA0, as an output.
+
+  @Description
+    Configures the GPIO pin, RA0, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA0 as an output
+    LCDMini_nCS2_SetDigitalOutput();
+    </code>
+
+*/
+#define LCDMini_nCS2_SetDigitalOutput() (_TRISA0 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RA1, high using LATA1.
+
+  @Description
+    Sets the GPIO pin, RA1, high using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA1 high (1)
+    LCDMini_nRESET_SetHigh();
+    </code>
+
+*/
+#define LCDMini_nRESET_SetHigh()          (_LATA1 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RA1, low using LATA1.
+
+  @Description
+    Sets the GPIO pin, RA1, low using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA1 low (0)
+    LCDMini_nRESET_SetLow();
+    </code>
+
+*/
+#define LCDMini_nRESET_SetLow()           (_LATA1 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RA1, using LATA1.
+
+  @Description
+    Toggles the GPIO pin, RA1, using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RA1
+    LCDMini_nRESET_Toggle();
+    </code>
+
+*/
+#define LCDMini_nRESET_Toggle()           (_LATA1 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RA1.
+
+  @Description
+    Reads the value of the GPIO pin, RA1.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RA1
+    postValue = LCDMini_nRESET_GetValue();
+    </code>
+
+*/
+#define LCDMini_nRESET_GetValue()         _RA1
+/**
+  @Summary
+    Configures the GPIO pin, RA1, as an input.
+
+  @Description
+    Configures the GPIO pin, RA1, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA1 as an input
+    LCDMini_nRESET_SetDigitalInput();
+    </code>
+
+*/
+#define LCDMini_nRESET_SetDigitalInput()  (_TRISA1 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RA1, as an output.
+
+  @Description
+    Configures the GPIO pin, RA1, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA1 as an output
+    LCDMini_nRESET_SetDigitalOutput();
+    </code>
+
+*/
+#define LCDMini_nRESET_SetDigitalOutput() (_TRISA1 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RB8, high using LATB8.
 
   @Description
@@ -346,6 +638,152 @@
 
 */
 #define SDO1_SetDigitalOutput() (_TRISB9 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RC3, high using LATC3.
+
+  @Description
+    Sets the GPIO pin, RC3, high using LATC3.
+
+  @Preconditions
+    The RC3 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC3 high (1)
+    LCDMini_nCS_SetHigh();
+    </code>
+
+*/
+#define LCDMini_nCS_SetHigh()          (_LATC3 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RC3, low using LATC3.
+
+  @Description
+    Sets the GPIO pin, RC3, low using LATC3.
+
+  @Preconditions
+    The RC3 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC3 low (0)
+    LCDMini_nCS_SetLow();
+    </code>
+
+*/
+#define LCDMini_nCS_SetLow()           (_LATC3 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RC3, using LATC3.
+
+  @Description
+    Toggles the GPIO pin, RC3, using LATC3.
+
+  @Preconditions
+    The RC3 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RC3
+    LCDMini_nCS_Toggle();
+    </code>
+
+*/
+#define LCDMini_nCS_Toggle()           (_LATC3 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RC3.
+
+  @Description
+    Reads the value of the GPIO pin, RC3.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RC3
+    postValue = LCDMini_nCS_GetValue();
+    </code>
+
+*/
+#define LCDMini_nCS_GetValue()         _RC3
+/**
+  @Summary
+    Configures the GPIO pin, RC3, as an input.
+
+  @Description
+    Configures the GPIO pin, RC3, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC3 as an input
+    LCDMini_nCS_SetDigitalInput();
+    </code>
+
+*/
+#define LCDMini_nCS_SetDigitalInput()  (_TRISC3 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RC3, as an output.
+
+  @Description
+    Configures the GPIO pin, RC3, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC3 as an output
+    LCDMini_nCS_SetDigitalOutput();
+    </code>
+
+*/
+#define LCDMini_nCS_SetDigitalOutput() (_TRISC3 = 0)
 /**
   @Summary
     Sets the GPIO pin, RC4, high using LATC4.
