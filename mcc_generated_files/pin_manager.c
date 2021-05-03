@@ -63,7 +63,7 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     LATA = 0x0000;
     LATB = 0x0000;
-    LATC = 0x0000;
+    LATC = 0x0300;
 
     /****************************************************************************
      * Setting the GPIO Direction SFR(s)
@@ -101,8 +101,8 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
-    RPOR10bits.RP20R = 0x0008;    //RC4->SPI1:SCK1OUT
     RPINR20bits.SDI1R = 0x0008;    //RB8->SPI1:SDI1
+    RPOR10bits.RP20R = 0x0008;    //RC4->SPI1:SCK1OUT
     RPOR4bits.RP9R = 0x0007;    //RB9->SPI1:SDO1
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS

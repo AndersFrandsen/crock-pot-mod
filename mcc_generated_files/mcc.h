@@ -52,14 +52,13 @@
 #include <stdbool.h>
 
 #include "drivers/spi_master.h"
+#include "interrupt_manager.h"
+#include "traps.h"
+#include "spi1_driver.h"
+#include "delay.h"
 #include "LCDMiniDrivers/lcd.h"
 #include "LCDMiniDrivers/digipot.h"
 #include "LCDMiniDrivers/expander.h"
-#include "spi1_driver.h"
-#include "interrupt_manager.h"
-#include "traps.h"
-#include "delay.h"
-#include "adc1.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

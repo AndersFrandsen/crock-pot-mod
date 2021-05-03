@@ -73,11 +73,11 @@
   @Example
     <code>
     // Set RA0 high (1)
-    LCDMini_nCS2_SetHigh();
+    LCD_nCS2_SetHigh();
     </code>
 
 */
-#define LCDMini_nCS2_SetHigh()          (_LATA0 = 1)
+#define LCD_nCS2_SetHigh()          (_LATA0 = 1)
 /**
   @Summary
     Sets the GPIO pin, RA0, low using LATA0.
@@ -97,11 +97,11 @@
   @Example
     <code>
     // Set RA0 low (0)
-    LCDMini_nCS2_SetLow();
+    LCD_nCS2_SetLow();
     </code>
 
 */
-#define LCDMini_nCS2_SetLow()           (_LATA0 = 0)
+#define LCD_nCS2_SetLow()           (_LATA0 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RA0, using LATA0.
@@ -121,11 +121,11 @@
   @Example
     <code>
     // Toggle RA0
-    LCDMini_nCS2_Toggle();
+    LCD_nCS2_Toggle();
     </code>
 
 */
-#define LCDMini_nCS2_Toggle()           (_LATA0 ^= 1)
+#define LCD_nCS2_Toggle()           (_LATA0 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RA0.
@@ -147,11 +147,11 @@
     uint16_t portValue;
 
     // Read RA0
-    postValue = LCDMini_nCS2_GetValue();
+    postValue = LCD_nCS2_GetValue();
     </code>
 
 */
-#define LCDMini_nCS2_GetValue()         _RA0
+#define LCD_nCS2_GetValue()         _RA0
 /**
   @Summary
     Configures the GPIO pin, RA0, as an input.
@@ -171,11 +171,11 @@
   @Example
     <code>
     // Sets the RA0 as an input
-    LCDMini_nCS2_SetDigitalInput();
+    LCD_nCS2_SetDigitalInput();
     </code>
 
 */
-#define LCDMini_nCS2_SetDigitalInput()  (_TRISA0 = 1)
+#define LCD_nCS2_SetDigitalInput()  (_TRISA0 = 1)
 /**
   @Summary
     Configures the GPIO pin, RA0, as an output.
@@ -195,11 +195,11 @@
   @Example
     <code>
     // Sets the RA0 as an output
-    LCDMini_nCS2_SetDigitalOutput();
+    LCD_nCS2_SetDigitalOutput();
     </code>
 
 */
-#define LCDMini_nCS2_SetDigitalOutput() (_TRISA0 = 0)
+#define LCD_nCS2_SetDigitalOutput() (_TRISA0 = 0)
 /**
   @Summary
     Sets the GPIO pin, RA1, high using LATA1.
@@ -219,11 +219,11 @@
   @Example
     <code>
     // Set RA1 high (1)
-    LCDMini_nReset_SetHigh();
+    LCD_nReset_SetHigh();
     </code>
 
 */
-#define LCDMini_nReset_SetHigh()          (_LATA1 = 1)
+#define LCD_nReset_SetHigh()          (_LATA1 = 1)
 /**
   @Summary
     Sets the GPIO pin, RA1, low using LATA1.
@@ -243,11 +243,11 @@
   @Example
     <code>
     // Set RA1 low (0)
-    LCDMini_nReset_SetLow();
+    LCD_nReset_SetLow();
     </code>
 
 */
-#define LCDMini_nReset_SetLow()           (_LATA1 = 0)
+#define LCD_nReset_SetLow()           (_LATA1 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RA1, using LATA1.
@@ -267,11 +267,11 @@
   @Example
     <code>
     // Toggle RA1
-    LCDMini_nReset_Toggle();
+    LCD_nReset_Toggle();
     </code>
 
 */
-#define LCDMini_nReset_Toggle()           (_LATA1 ^= 1)
+#define LCD_nReset_Toggle()           (_LATA1 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RA1.
@@ -293,11 +293,11 @@
     uint16_t portValue;
 
     // Read RA1
-    postValue = LCDMini_nReset_GetValue();
+    postValue = LCD_nReset_GetValue();
     </code>
 
 */
-#define LCDMini_nReset_GetValue()         _RA1
+#define LCD_nReset_GetValue()         _RA1
 /**
   @Summary
     Configures the GPIO pin, RA1, as an input.
@@ -317,11 +317,11 @@
   @Example
     <code>
     // Sets the RA1 as an input
-    LCDMini_nReset_SetDigitalInput();
+    LCD_nReset_SetDigitalInput();
     </code>
 
 */
-#define LCDMini_nReset_SetDigitalInput()  (_TRISA1 = 1)
+#define LCD_nReset_SetDigitalInput()  (_TRISA1 = 1)
 /**
   @Summary
     Configures the GPIO pin, RA1, as an output.
@@ -341,11 +341,11 @@
   @Example
     <code>
     // Sets the RA1 as an output
-    LCDMini_nReset_SetDigitalOutput();
+    LCD_nReset_SetDigitalOutput();
     </code>
 
 */
-#define LCDMini_nReset_SetDigitalOutput() (_TRISA1 = 0)
+#define LCD_nReset_SetDigitalOutput() (_TRISA1 = 0)
 /**
   @Summary
     Sets the GPIO pin, RB8, high using LATB8.
@@ -640,152 +640,6 @@
 #define SDO1_SetDigitalOutput() (_TRISB9 = 0)
 /**
   @Summary
-    Sets the GPIO pin, RC0, high using LATC0.
-
-  @Description
-    Sets the GPIO pin, RC0, high using LATC0.
-
-  @Preconditions
-    The RC0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RC0 high (1)
-    channel_AN10_SetHigh();
-    </code>
-
-*/
-#define channel_AN10_SetHigh()          (_LATC0 = 1)
-/**
-  @Summary
-    Sets the GPIO pin, RC0, low using LATC0.
-
-  @Description
-    Sets the GPIO pin, RC0, low using LATC0.
-
-  @Preconditions
-    The RC0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RC0 low (0)
-    channel_AN10_SetLow();
-    </code>
-
-*/
-#define channel_AN10_SetLow()           (_LATC0 = 0)
-/**
-  @Summary
-    Toggles the GPIO pin, RC0, using LATC0.
-
-  @Description
-    Toggles the GPIO pin, RC0, using LATC0.
-
-  @Preconditions
-    The RC0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Toggle RC0
-    channel_AN10_Toggle();
-    </code>
-
-*/
-#define channel_AN10_Toggle()           (_LATC0 ^= 1)
-/**
-  @Summary
-    Reads the value of the GPIO pin, RC0.
-
-  @Description
-    Reads the value of the GPIO pin, RC0.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    uint16_t portValue;
-
-    // Read RC0
-    postValue = channel_AN10_GetValue();
-    </code>
-
-*/
-#define channel_AN10_GetValue()         _RC0
-/**
-  @Summary
-    Configures the GPIO pin, RC0, as an input.
-
-  @Description
-    Configures the GPIO pin, RC0, as an input.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RC0 as an input
-    channel_AN10_SetDigitalInput();
-    </code>
-
-*/
-#define channel_AN10_SetDigitalInput()  (_TRISC0 = 1)
-/**
-  @Summary
-    Configures the GPIO pin, RC0, as an output.
-
-  @Description
-    Configures the GPIO pin, RC0, as an output.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RC0 as an output
-    channel_AN10_SetDigitalOutput();
-    </code>
-
-*/
-#define channel_AN10_SetDigitalOutput() (_TRISC0 = 0)
-/**
-  @Summary
     Sets the GPIO pin, RC3, high using LATC3.
 
   @Description
@@ -803,11 +657,11 @@
   @Example
     <code>
     // Set RC3 high (1)
-    LCDMini_nCS_SetHigh();
+    LCD_nCS_SetHigh();
     </code>
 
 */
-#define LCDMini_nCS_SetHigh()          (_LATC3 = 1)
+#define LCD_nCS_SetHigh()          (_LATC3 = 1)
 /**
   @Summary
     Sets the GPIO pin, RC3, low using LATC3.
@@ -827,11 +681,11 @@
   @Example
     <code>
     // Set RC3 low (0)
-    LCDMini_nCS_SetLow();
+    LCD_nCS_SetLow();
     </code>
 
 */
-#define LCDMini_nCS_SetLow()           (_LATC3 = 0)
+#define LCD_nCS_SetLow()           (_LATC3 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RC3, using LATC3.
@@ -851,11 +705,11 @@
   @Example
     <code>
     // Toggle RC3
-    LCDMini_nCS_Toggle();
+    LCD_nCS_Toggle();
     </code>
 
 */
-#define LCDMini_nCS_Toggle()           (_LATC3 ^= 1)
+#define LCD_nCS_Toggle()           (_LATC3 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RC3.
@@ -877,11 +731,11 @@
     uint16_t portValue;
 
     // Read RC3
-    postValue = LCDMini_nCS_GetValue();
+    postValue = LCD_nCS_GetValue();
     </code>
 
 */
-#define LCDMini_nCS_GetValue()         _RC3
+#define LCD_nCS_GetValue()         _RC3
 /**
   @Summary
     Configures the GPIO pin, RC3, as an input.
@@ -901,11 +755,11 @@
   @Example
     <code>
     // Sets the RC3 as an input
-    LCDMini_nCS_SetDigitalInput();
+    LCD_nCS_SetDigitalInput();
     </code>
 
 */
-#define LCDMini_nCS_SetDigitalInput()  (_TRISC3 = 1)
+#define LCD_nCS_SetDigitalInput()  (_TRISC3 = 1)
 /**
   @Summary
     Configures the GPIO pin, RC3, as an output.
@@ -925,11 +779,11 @@
   @Example
     <code>
     // Sets the RC3 as an output
-    LCDMini_nCS_SetDigitalOutput();
+    LCD_nCS_SetDigitalOutput();
     </code>
 
 */
-#define LCDMini_nCS_SetDigitalOutput() (_TRISC3 = 0)
+#define LCD_nCS_SetDigitalOutput() (_TRISC3 = 0)
 /**
   @Summary
     Sets the GPIO pin, RC4, high using LATC4.
@@ -1076,6 +930,298 @@
 
 */
 #define SCK1OUT_SetDigitalOutput() (_TRISC4 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RC8, high using LATC8.
+
+  @Description
+    Sets the GPIO pin, RC8, high using LATC8.
+
+  @Preconditions
+    The RC8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC8 high (1)
+    BUTTON_2_SetHigh();
+    </code>
+
+*/
+#define BUTTON_2_SetHigh()          (_LATC8 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RC8, low using LATC8.
+
+  @Description
+    Sets the GPIO pin, RC8, low using LATC8.
+
+  @Preconditions
+    The RC8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC8 low (0)
+    BUTTON_2_SetLow();
+    </code>
+
+*/
+#define BUTTON_2_SetLow()           (_LATC8 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RC8, using LATC8.
+
+  @Description
+    Toggles the GPIO pin, RC8, using LATC8.
+
+  @Preconditions
+    The RC8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RC8
+    BUTTON_2_Toggle();
+    </code>
+
+*/
+#define BUTTON_2_Toggle()           (_LATC8 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RC8.
+
+  @Description
+    Reads the value of the GPIO pin, RC8.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RC8
+    postValue = BUTTON_2_GetValue();
+    </code>
+
+*/
+#define BUTTON_2_GetValue()         _RC8
+/**
+  @Summary
+    Configures the GPIO pin, RC8, as an input.
+
+  @Description
+    Configures the GPIO pin, RC8, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC8 as an input
+    BUTTON_2_SetDigitalInput();
+    </code>
+
+*/
+#define BUTTON_2_SetDigitalInput()  (_TRISC8 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RC8, as an output.
+
+  @Description
+    Configures the GPIO pin, RC8, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC8 as an output
+    BUTTON_2_SetDigitalOutput();
+    </code>
+
+*/
+#define BUTTON_2_SetDigitalOutput() (_TRISC8 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RC9, high using LATC9.
+
+  @Description
+    Sets the GPIO pin, RC9, high using LATC9.
+
+  @Preconditions
+    The RC9 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC9 high (1)
+    BUTTON_1_SetHigh();
+    </code>
+
+*/
+#define BUTTON_1_SetHigh()          (_LATC9 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RC9, low using LATC9.
+
+  @Description
+    Sets the GPIO pin, RC9, low using LATC9.
+
+  @Preconditions
+    The RC9 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC9 low (0)
+    BUTTON_1_SetLow();
+    </code>
+
+*/
+#define BUTTON_1_SetLow()           (_LATC9 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RC9, using LATC9.
+
+  @Description
+    Toggles the GPIO pin, RC9, using LATC9.
+
+  @Preconditions
+    The RC9 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RC9
+    BUTTON_1_Toggle();
+    </code>
+
+*/
+#define BUTTON_1_Toggle()           (_LATC9 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RC9.
+
+  @Description
+    Reads the value of the GPIO pin, RC9.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RC9
+    postValue = BUTTON_1_GetValue();
+    </code>
+
+*/
+#define BUTTON_1_GetValue()         _RC9
+/**
+  @Summary
+    Configures the GPIO pin, RC9, as an input.
+
+  @Description
+    Configures the GPIO pin, RC9, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC9 as an input
+    BUTTON_1_SetDigitalInput();
+    </code>
+
+*/
+#define BUTTON_1_SetDigitalInput()  (_TRISC9 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RC9, as an output.
+
+  @Description
+    Configures the GPIO pin, RC9, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC9 as an output
+    BUTTON_1_SetDigitalOutput();
+    </code>
+
+*/
+#define BUTTON_1_SetDigitalOutput() (_TRISC9 = 0)
 
 /**
     Section: Function Prototypes

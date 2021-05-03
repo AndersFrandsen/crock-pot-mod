@@ -2,6 +2,7 @@
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/mcc.h"
 #include "ds18b20.h"
+#include "pid_control.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -25,7 +26,10 @@ int main(void)
     ANSBbits.ANSB2 = 0;
     TRISBbits.TRISB3 = 0;
     
-    uint8_t count = 0;
+    struct pid_control pid;
+    pid.heating_on = false;
+    pid.set_point = 55;
+    
     char celcius[16] = "  C";
     celcius[1] = 0xDF;
     
@@ -42,7 +46,7 @@ int main(void)
         ow_write_byte(CONVERT_T);
 
         while (!read_ow()) {
-            // Wait for ds18b20 to finish temperature conversion
+            // Wait for DS18B20 to finish temperature conversion
         }
 
         ow_reset_pulse();
@@ -54,10 +58,10 @@ int main(void)
         
         uint16_t temp = ((scratchpad[1] << 8) | (scratchpad[0])) / 16;
         
-        if (temp < 53 && RELAY_LAT == 1) {
+        if (temp < pid.set_point && RELAY_LAT == 1) {
             RELAY_LAT = 0;
         }
-        else if (temp > 53 && RELAY_LAT == 0) { 
+        else if (temp > pid.set_point && RELAY_LAT == 0) { 
            RELAY_LAT = 1;
         }
         
@@ -66,10 +70,17 @@ int main(void)
         strcat(display, celcius);
         lcd_writeString(display, 0);
         
-        ADC1_ChannelSelect(channel_AN10);
+        if (BUTTON_1_GetValue() == 0) {
+            char display[16] = "";
+            uint8_t value = adjust_set_point_down(&pid);
+            lcd_writeString(utoa(display, value, 10), 1);
+        }
+        if (BUTTON_2_GetValue() == 0) {
+            char display[16] = "";
+            uint8_t value = adjust_set_point_up(&pid);
+            lcd_writeString(utoa(display, value, 10), 1);
+        }
         
-        //uint16_t pot_val = ADC1_ConversionResultGet(POT);
-        
-        __delay_ms(10000UL);
+        //__delay_ms(10000UL);
     }
 }

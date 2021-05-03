@@ -89,21 +89,19 @@
 #include "clock.h"
 #include "system.h"
 #include "drivers/spi_master.h"
+#include "interrupt_manager.h"
+#include "traps.h"
+#include "spi1_driver.h"
+#include "delay.h"
 #include "LCDMiniDrivers/lcd.h"
 #include "LCDMiniDrivers/digipot.h"
 #include "LCDMiniDrivers/expander.h"
-#include "spi1_driver.h"
-#include "interrupt_manager.h"
-#include "traps.h"
-#include "delay.h"
-#include "adc1.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
-    ADC1_Initialize();
+    INTERRUPT_Initialize();
     lcd_setup();
 }
 
