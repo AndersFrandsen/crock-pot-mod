@@ -71,16 +71,22 @@ int main(void)
         lcd_writeString(display, 0);
         
         if (BUTTON_1_GetValue() == 0) {
-            char display[16] = "";
-            uint8_t value = adjust_set_point_down(&pid);
-            lcd_writeString(utoa(display, value, 10), 1);
-        }
-        if (BUTTON_2_GetValue() == 0) {
-            char display[16] = "";
-            uint8_t value = adjust_set_point_up(&pid);
-            lcd_writeString(utoa(display, value, 10), 1);
+            __delay_ms(3UL);
+            if (BUTTON_1_GetValue() == 0) {
+                uint8_t value = adjust_set_point_down(&pid);
+                char display[16] = "";
+                lcd_writeString(utoa(display, value, 10), 1);
+            }
         }
         
-        //__delay_ms(10000UL);
+        
+        if (BUTTON_2_GetValue() == 0) {
+            __delay_ms(3UL);
+            if (BUTTON_2_GetValue() == 0) {
+                uint8_t value = adjust_set_point_up(&pid);
+                char display[16] = "";
+                lcd_writeString(utoa(display, value, 10), 1);
+            }
+        }
     }
 }
