@@ -100,3 +100,61 @@ unsigned char ow_read_bit(void)
 
     return _bit;
 }
+
+float get_temp()
+{
+    unsigned char i;
+    uint8_t scratchpad[9];
+    
+    ow_reset_pulse();
+    ow_write_byte(SKIP_ROM);
+    ow_write_byte(CONVERT_T);
+
+    while (!read_ow()) {
+        // Wait for DS18B20 to finish temperature conversion
+    }
+
+    ow_reset_pulse();
+    ow_write_byte(SKIP_ROM);
+    ow_write_byte(READ_SCRATCHPAD);
+        
+    for (i = 0; i < 9; i++)
+        scratchpad[i] = ow_read_byte();
+        
+    uint16_t t1 = ((scratchpad[1] << 8) | (scratchpad[0]));
+    
+    //TODO: switch case for resolution
+    
+    float temp = ((scratchpad[1] << 8) | (scratchpad[0])) / 16.0;
+    
+    return temp;
+}
+
+void set_resolution()
+{
+    ow_reset_pulse();
+    ow_write_byte(SKIP_ROM);
+    ow_write_byte(WRITE_SCRATCHPAD);
+    
+    ow_write_byte(0x4B);
+    ow_write_byte(0x46);
+    ow_write_byte(RES_11BIT);
+    
+    /*
+    switch (resolution)
+    {
+        case "RES_12BIT":
+            ow_write_byte(RES_12BIT);
+            break;
+        case "RES_11BIT":
+            ow_write_byte(RES_11BIT);
+            break;
+        case "RES_10BIT":
+            ow_write_byte(RES_10BIT);
+            break;
+        case "RES_9BIT":
+            ow_write_byte(RES_9BIT);
+            break;
+    }
+    */
+}
