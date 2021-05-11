@@ -11,7 +11,10 @@
 #define RES_10BIT 0x3F
 #define RES_9BIT 0x1F
 
-enum resolution {RES_12bit, RES_11bit, RES_10bit, RES_9bit};
+struct ds18b20
+{
+    uint8_t resolution;
+};
 
 void drive_ow_low(void);
 void drive_ow_high(void);
@@ -21,5 +24,5 @@ unsigned char ow_read_byte(void);
 unsigned char ow_reset_pulse(void);
 void ow_write_bit(unsigned char _bit);
 unsigned char ow_read_bit(void);
-float get_temp(void);
-void set_resolution(void);
+float get_temp(struct ds18b20 *sensor);
+void set_resolution(struct ds18b20 *sensor, uint8_t resolution);

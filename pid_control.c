@@ -24,8 +24,10 @@ void toggle_relay(struct pid_control *pid, float temp)
 {
     if (temp < pid->set_point && RELAY_LAT == 1) {
         RELAY_LAT = 0;
+        pid->heating_on = true;
     }
     else if (temp > pid->set_point && RELAY_LAT == 0) { 
         RELAY_LAT = 1;
+        pid->heating_on = false;
     }
 }

@@ -51,11 +51,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "drivers/spi_master.h"
+#include "uart1.h"
+#include "delay.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "drivers/spi_master.h"
 #include "spi1_driver.h"
-#include "delay.h"
 #include "LCDMiniDrivers/lcd.h"
 #include "LCDMiniDrivers/digipot.h"
 #include "LCDMiniDrivers/expander.h"

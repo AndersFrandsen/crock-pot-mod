@@ -9,7 +9,7 @@
 
 struct pid_control
 {
-    uint8_t set_point;
+    float set_point;
     bool heating_on;
 };
 

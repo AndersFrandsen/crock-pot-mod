@@ -88,11 +88,12 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
-#include "drivers/spi_master.h"
+#include "uart1.h"
+#include "delay.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "drivers/spi_master.h"
 #include "spi1_driver.h"
-#include "delay.h"
 #include "LCDMiniDrivers/lcd.h"
 #include "LCDMiniDrivers/digipot.h"
 #include "LCDMiniDrivers/expander.h"
@@ -103,6 +104,7 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     lcd_setup();
+    UART1_Initialize();
 }
 
 /**
