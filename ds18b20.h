@@ -16,6 +16,7 @@ struct ds18b20
     uint8_t resolution;
 };
 
+void initialize_ds18b20(void);
 void drive_ow_low(void);
 void drive_ow_high(void);
 unsigned char read_ow(void);

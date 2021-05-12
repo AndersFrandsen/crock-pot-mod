@@ -13,6 +13,12 @@
 #define FCY 32000000UL / 16
 #include <libpic30.h>
 
+void initialize_ds18b20()
+{
+    // Set RB2 as digital I/O
+    ANSBbits.ANSB2 = 0;
+}
+
 unsigned char ow_reset_pulse(void)
 {
     drive_ow_low();

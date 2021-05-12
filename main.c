@@ -12,11 +12,13 @@
 #define FCY 32000000UL / 16
 #include <libpic30.h>
 
+// Global variables for interrupt - PID control and temp sensor
 struct ds18b20 ds_sensor;
 struct pid_control pid;
 uint8_t lcd_string_0[16] = "Current        C";
 uint8_t lcd_string_1[16] = "Set temp       C";
 
+// Timer interrupt - every 8 seconds
 void interrupt_handler(void)
 {
     // Read current temperature and print to LCD
@@ -24,8 +26,10 @@ void interrupt_handler(void)
     utoa(&lcd_string_0[11], (uint8_t)temp, 10);
     lcd_writeString(lcd_string_0, 0);
         
-    // Toggle relay on/off and log to RPi over UART
+    // Toggle relay on/off
     toggle_relay(&pid, temp); 
+    
+    // Log data to RPi over UART
     log_data(&pid, temp);
 }
 
@@ -33,24 +37,24 @@ int main(void)
 {
     SYSTEM_Initialize();
     
-    ANSBbits.ANSB3 = 0;
-    ANSBbits.ANSB2 = 0;
-    TRISBbits.TRISB3 = 0;
+    // Initialize DS18B20 + PID Control
+    initialize_ds18b20();
+    initialize_pid_control();
     
     TMR1_SetInterruptHandler(interrupt_handler);
     TMR1_Start();
     
-    // Construct DS18B20 and set to 12 bit resolution
+    // Set DS18B20 12 bit resolution
     ds_sensor.resolution = RES_12BIT;
     
     // First conversion when DS18B20 is initialized is always 85 degrees
     uint16_t _temp = get_temp(&ds_sensor);
     
-    // Construct PID and set default set point to 55 degrees
+    // Set default set point to 55 degrees
     pid.heating_on = true;
     pid.set_point = 55.0;
     
-    // Set LCD contrast and print current/set temp messages
+    // Set LCD contrast and print current/set temperature messages
     lcd_setContrast(80);
     lcd_string_0[14] = 0xDF;
     lcd_string_1[14] = 0xDF;
@@ -59,6 +63,7 @@ int main(void)
     
     while (1)
     {
+        // Pull BUTTON_1 status - if pressed turn set-temperature down
         if (BUTTON_1_GetValue() == 0) {
             __delay_ms(3UL);
             if (BUTTON_1_GetValue() == 0) {
@@ -68,6 +73,7 @@ int main(void)
             }
         }
         
+        // Same for BUTTON_2 - turn set-temperature up
         if (BUTTON_2_GetValue() == 0) {
             __delay_ms(3UL);
             if (BUTTON_2_GetValue() == 0) {
@@ -79,6 +85,7 @@ int main(void)
     }
 }
 
+// Log sample data to RPi over UART
 void log_data(struct pid_control *pid, float temp)
 {    
     printf("Current temp: %f, Set point: %f, Relay: %s\n",

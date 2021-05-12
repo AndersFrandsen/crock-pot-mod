@@ -1,5 +1,12 @@
 #include "pid_control.h"
 
+void initialize_pid_control()
+{
+    // Set RB3 as digital output
+    ANSBbits.ANSB3 = 0;
+    TRISBbits.TRISB3 = 0;
+}
+
 uint8_t adjust_set_point_up(struct pid_control *pid)
 {
     if (pid->set_point == 65) {
