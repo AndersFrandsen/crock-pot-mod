@@ -15,7 +15,8 @@ uint8_t adjust_set_point_up(struct pid_control *pid)
         pid->set_point = 45;
         return pid->set_point;
     } else {
-        return pid->set_point++;
+        pid->set_point++;
+        return pid->set_point;
     }
 }
 
@@ -25,7 +26,8 @@ uint8_t adjust_set_point_down(struct pid_control *pid)
         pid->set_point = 65;
         return pid->set_point;
     } else {
-        return pid->set_point--;
+        pid->set_point--;
+        return pid->set_point;
     }
 }
 
