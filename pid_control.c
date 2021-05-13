@@ -1,12 +1,14 @@
 #include "pid_control.h"
 
+// Initialize - set RB3 as digital output
 void initialize_pid_control()
 {
-    // Set RB3 as digital output
     ANSBbits.ANSB3 = 0;
     TRISBbits.TRISB3 = 0;
 }
 
+// Turn set-temperature up/down
+// The temperature can be set between 45-65 degress celcius
 uint8_t adjust_set_point_up(struct pid_control *pid)
 {
     if (pid->set_point == 65) {
@@ -27,6 +29,7 @@ uint8_t adjust_set_point_down(struct pid_control *pid)
     }
 }
 
+// Toggle relay on/off based on passed temperature float
 void toggle_relay(struct pid_control *pid, float temp)
 {
     if (temp < pid->set_point && RELAY_LAT == 1) {

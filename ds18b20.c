@@ -10,15 +10,18 @@
 #define OUTPUT 0
 #define INPUT 1
 
+// Needed for __delay
 #define FCY 32000000UL / 16
 #include <libpic30.h>
 
+// Initialize - set RB2 as digital I/O open-drain
 void initialize_ds18b20()
 {
-    // Set RB2 as digital I/O
     ANSBbits.ANSB2 = 0;
 }
 
+// Produce a Reset pulse to slave device and also to detect the presence pulse from the slave device
+// The 1-Wire slave device is identified using this function
 unsigned char ow_reset_pulse(void)
 {
     drive_ow_low();
@@ -31,18 +34,21 @@ unsigned char ow_reset_pulse(void)
     return presense;
 }
 
+// Configures the 1-Wire port pin as an output and drives the port pin to LOW
 void drive_ow_low(void)
 {
     ONE_WIRE_TRIS = OUTPUT;
     ONE_WIRE_LAT = LOW;
 }
 
+// Configures the 1-Wire port pin as an output and drives the port pin to HIGH
 void drive_ow_high(void)
 {
     ONE_WIRE_TRIS = OUTPUT;
     ONE_WIRE_LAT = HIGH;
 }
 
+// Configures the 1-Wire port pin as an input and reads the status of the port pin
 unsigned char read_ow(void)
 {
     ONE_WIRE_TRIS = INPUT;
@@ -50,6 +56,7 @@ unsigned char read_ow(void)
     return ONE_WIRE_PORT;
 }
 
+// Transmit a byte of data to a slave device
 void ow_write_byte(unsigned char byte)
 {
     unsigned char i;
@@ -61,6 +68,7 @@ void ow_write_byte(unsigned char byte)
     }
 }
 
+// Reading a complete byte from the slave device
 unsigned char ow_read_byte(void)
 {
     unsigned char byte = 0;
@@ -76,6 +84,7 @@ unsigned char ow_read_byte(void)
     return byte;
 }
 
+// Describes the protocol to write bit information to a slave device
 void ow_write_bit(unsigned char _bit)
 {
     if (_bit)
@@ -93,6 +102,7 @@ void ow_write_bit(unsigned char _bit)
     }
 }
 
+// Describes the protocol to read bit information from a slave device
 unsigned char ow_read_bit(void)
 {
     unsigned char _bit;
@@ -107,6 +117,8 @@ unsigned char ow_read_bit(void)
     return _bit;
 }
 
+// Initiate temperature conversion in sensor
+// Return temperature from scratchpad registers based on configured resolution
 float get_temp(struct ds18b20 *sensor)
 {
     unsigned char i;
@@ -149,6 +161,7 @@ float get_temp(struct ds18b20 *sensor)
     return temp;
 }
 
+// Configures resolution in sensor
 void set_resolution(struct ds18b20 *sensor, uint8_t resolution)
 {
     ow_reset_pulse();
